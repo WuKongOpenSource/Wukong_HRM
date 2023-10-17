@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kakarote.hrm.mapper.HrmAppraisalPlanRelationEmployeeMapper">
+    <select id="queryEmployeeList" resultType="com.kakarote.hrm.entity.VO.AppraisalEmployeeVO">
+        select e.employee_id,e.employee_name,d.name as deptName from wk_hrm_appraisal_plan_relation_employee p
+        left join wk_hrm_employee e on p.employee_id = e.employee_id
+        left join wk_hrm_dept d on e.dept_id = d.dept_id
+        where p.appraisal_plan_id = #{data.appraisalPlanId}
+        <if test="data.employeeName != null and data.employeeName != ''">
+            and e.employee_name like concat('%', #{data.employeeName}, '%')
+        </if>
+        <if test="data.employStatus != null and data.employStatus.size() > 0">
+            and e.status in
+            <foreach item="item" collection="data.employStatus" separator="," open="(" close=")" index="">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+</mapper>

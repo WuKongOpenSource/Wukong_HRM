@@ -1,0 +1,205 @@
+.main {
+  position: relative;
+  min-width: 810px;
+  height: 100%;
+  padding-top: 45px;
+  overflow-y: auto;
+
+  &-title {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 142px;
+    padding-right: 32px;
+    padding-bottom: 38px;
+    padding-left: 32px;
+
+    &-icon {
+      display: block;
+      width: 60px;
+      height: 60px !important;
+      font-size: 40px;
+      line-height: 60px;
+      color: $--color-white;
+      text-align: center;
+      background: $--color-primary;
+      border-radius: 6px;
+    }
+
+    &-information {
+      flex: 1;
+      margin-right: 212px;
+      margin-left: 24px;
+
+      &-caption {
+        margin-bottom: 8px;
+        font-size: 24px;
+        font-weight: $--font-weight-semibold;
+        line-height: 28px;
+        color: $--color-n800;
+      }
+
+      &-content {
+        min-width: 400px;
+        height: 68px;
+        font-size: $--font-size-base;
+        font-weight: $--font-weight-medium;
+        line-height: 24px;
+        color: $--color-n300;
+      }
+    }
+
+    &-connect {
+      position: absolute;
+      top: 14px;
+      right: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      // margin-top: 14px;
+      width: 160px;
+      height: 40px;
+      color: $--color-white;
+      background: $--color-primary;
+      border-radius: 3px;
+      opacity: 1;
+    }
+  }
+
+  &-body {
+    margin-top: 24px;
+  }
+}
+
+.main-tabs {
+  min-height: calc(100vh - 357px);
+
+  ::v-deep .el-tabs__header {
+    padding-left: 39px;
+    margin-bottom: 0;
+  }
+
+  ::v-deep.el-tabs__item {
+    height: 32px;
+    font-size: $--font-size-large;
+    font-weight: $--font-weight-semibold;
+    line-height: 28px;
+    color: $--color-n500;
+
+    &.is-active {
+      color: $--color-n800;
+    }
+  }
+
+  .el-tabs__nav-wrap::after {
+    display: none;
+  }
+
+  ::v-deep.el-tabs__nav-wrap::after {
+    height: 0 !important;
+  }
+}
+
+.main-menu {
+  width: 100%;
+
+  &-items {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    padding-left: 33px;
+
+    &:nth-child(odd) {
+      background: $--background-color-base;
+    }
+
+    &-title {
+      margin-bottom: 8px;
+      font-family: PingFangSC-Medium;
+      font-size: 18px;
+      font-weight: $--font-weight-semibold;
+      line-height: 28px;
+      color: $--color-n800;
+    }
+
+    &-content {
+      flex: 1;
+      min-width: 400px;
+      font-size: $--font-size-base;
+      font-weight: 400;
+      line-height: 24px;
+      color: $--color-n700;
+    }
+
+    &-img {
+      width: 300px;
+      margin-top: 8px;
+    }
+  }
+}
+
+.main-flow {
+  position: relative;
+  width: 100%;
+  padding: 24px 40px 0;
+  background: $--background-color-base;
+
+  &-items {
+    position: relative;
+    width: 802px;
+    padding-bottom: 24px;
+    padding-left: 32px;
+    border-left: 2px solid $--border-color-base;
+
+    &:nth-last-child(1) {
+      border: none;
+    }
+
+    &-title {
+      margin-bottom: 4px;
+      font-family: PingFangSC-Medium;
+      font-size: $--font-size-large;
+      font-weight: $--font-weight-semibold;
+      color: $--color-n800;
+    }
+
+    &-content {
+      font-family: "PingFang SC";
+      font-size: $--font-size-base;
+      font-weight: 400;
+      line-height: 20px;
+      color: $--color-n700;
+    }
+
+    &-img {
+      width: 300px;
+      margin-top: 20px;
+    }
+
+    &-ball {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      background: $--color-primary;
+      border-radius: 50%;
+      transform: translate(-55%, 0);
+
+      &-ball2 {
+        width: 8px;
+        height: 8px;
+        background: $--color-white;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.main-img {
+  display: block;
+  width: 100%;
+}

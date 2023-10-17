@@ -1,0 +1,12 @@
+#wk-knowledge-content-wukong {
+  margin-block-start: 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.mce-item-table,
+.mce-item-table caption,
+.mce-item-table td,
+.mce-item-table th {
+  border: none !important;
+}

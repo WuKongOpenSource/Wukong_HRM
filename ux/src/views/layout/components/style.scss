@@ -1,0 +1,118 @@
+// 下拉切换
+.drop-wrap {
+  max-height: 500px;
+  padding: #{$--interval-base * 2} #{$--interval-base * 2}  0;
+  overflow-y: auto;
+  color: $--color-black;
+
+  &__title {
+    position: relative;
+    padding-left: 8px;
+    margin-bottom: 16px;
+    font-size: $--font-size-large;
+    font-weight: $--font-weight-semibold;
+  }
+
+  &__section {
+    padding: $--interval-base 0;
+  }
+
+  &.is-small {
+    padding: 0;
+  }
+}
+
+// 菜单
+.drop-cell {
+  padding: $--interval-base;
+  cursor: pointer;
+  border-radius: $--border-radius-base;
+
+  &__hd {
+    width: 32px;
+    height: 32px;
+    background-color: $--color-primary;
+    border-radius: $--border-radius-base;
+
+    > i {
+      font-size: 16px;
+      color: $--color-white;
+    }
+  }
+
+  &__bd {
+    flex: 1;
+    margin-left: $--interval-base;
+
+    > .des {
+      color: $--color-text-secondary;
+    }
+  }
+
+  &.is-select,
+  &:hover {
+    background-color: $--color-n20;
+  }
+
+  &.is-small {
+    padding: #{$--interval-base / 2} $--interval-base;
+
+    .drop-cell__hd {
+      background-color: transparent;
+      border-radius: 0;
+
+      > i {
+        color: $--color-black;
+      }
+    }
+  }
+
+  &.is-interval {
+    margin-top: 4px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+// 左侧菜单头部
+.header-cell {
+  padding: 8px 10px;
+
+  &.is-normal {
+    padding: 24px 16px 8px;
+    max-width: 200px;
+  }
+
+  &__hd {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: $--color-white;
+    background-color: $--color-primary;
+    border-radius: $--border-radius-base;
+  }
+
+  &__bd {
+    margin-left: 16px;
+    overflow: hidden;
+    line-height: 1.22;
+    color: $--color-text-primary;
+  }
+
+  &--des {
+    margin-top: 3px;
+    overflow: hidden;
+    font-size: $--font-size-small;
+    font-weight: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &--label {
+    font-size: $--font-size-base;
+    font-weight: $--font-weight-semibold;
+    letter-spacing: -0.003em;
+  }
+}

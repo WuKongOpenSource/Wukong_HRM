@@ -1,0 +1,165 @@
+// 距离边的间隔
+/* stylelint-disable-next-line scss/dollar-variable-pattern */
+$--main-padding-interval: 40px;
+
+.xr-header {
+  line-height: 32px;
+}
+
+// 框架 左侧菜单 和  右侧内容
+.main {
+  height: 100%;
+  padding: 24px $--main-padding-interval;
+
+  &-content-wrap {
+    position: relative;
+    height: calc(100% - 40px);
+    overflow: hidden;
+  }
+
+  &-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    height: 100%;
+    padding: $--interval-base;
+    overflow: auto;
+    background-color: rgba($color: #081e42, $alpha: 0.04);
+    border-radius: $--border-radius-base;
+
+    &__title {
+      padding: $--interval-base $--interval-base 0;
+      margin-bottom: #{$--interval-base * 2};
+      color: $--color-n500;
+    }
+
+    &__content {
+      flex: 1;
+      overflow: auto;
+
+      // height: calc(100% - 40px);
+      // overflow-y: overlay;
+      // overflow-x: overlay;
+    }
+  }
+
+  &-content {
+    position: relative;
+    height: 100%;
+    margin-left: 280px;
+    overflow: hidden;
+  }
+}
+
+.body {
+  // overflow-y: auto;
+  position: relative;
+  flex: 1;
+  padding-bottom: #{$--interval-base * 2};
+  margin-top: #{$--interval-base * 2};
+}
+
+// 搜索
+.search-bar {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  line-height: 32px;
+
+  .search-input {
+    width: 220px;
+  }
+}
+
+// 侧边菜单
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: $--border-radius-base;
+
+  &__content {
+    flex: 1;
+    font-size: 14px;
+  }
+
+  .el-badge__content--undefined {
+    border-color: transparent;
+  }
+
+  & + & {
+    margin-top: 4px;
+  }
+}
+
+.menu-item:hover,
+.menu-item.is-select {
+  background-color: $--color-b50;
+  border-color: $--color-b100;
+}
+
+// 菜单包裹
+.nav-sections-wrap {
+  background-color: $--color-white;
+  border-radius: $--border-radius-base;
+}
+
+.nav-section {
+  position: relative;
+
+  &__title {
+    position: relative;
+    padding: 0 $--interval-base;
+    font-size: $--font-size-small;
+    line-height: 32px;
+
+    .add-btn {
+      position: absolute;
+      top: 7px;
+      right: #{$--interval-base * 2};
+      padding: 0;
+    }
+  }
+
+  &__content {
+    &.is-padding {
+      padding: 0 $--interval-base;
+    }
+
+    &.is-top-padding {
+      padding-top: $--interval-base;
+    }
+  }
+
+  &.is-padding {
+    padding: 0 $--interval-base;
+  }
+}
+
+// 表格调整
+::v-deep .el-table {
+  // 右侧固定布局的底部线条
+  .el-table__fixed-right::before {
+    display: none;
+  }
+}
+
+// table 内的icon图标
+.table-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background-color: $--color-primary;
+  border-radius: $--border-radius-base;
+
+  .wk {
+    color: white;
+  }
+}

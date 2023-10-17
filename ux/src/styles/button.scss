@@ -1,0 +1,143 @@
+// button
+.xr-btn--primary {
+  i {
+    margin-right: 5px;
+    font-size: 13px;
+  }
+}
+
+// plain 形式下背景白色
+.xr-btn-plain--white.el-button--primary {
+  &.is-plain {
+    background-color: white;
+  }
+
+  &.is-plain:hover,
+  &.is-plain:focus {
+    background-color: $--color-primary;
+  }
+}
+
+// 编辑绿
+.xr-btn--green {
+  background-color: #389e0b;
+  border-color: #389e0b;
+
+  i {
+    margin-right: 5px;
+    font-size: 13px;
+  }
+}
+
+.xr-btn--green:hover,
+.xr-btn--green.is-disabled,
+.xr-btn--green.is-disabled:hover,
+.xr-btn--green:focus {
+  color: #fff;
+  background: #4ca824;
+  border-color: #4ca824;
+}
+
+// 按钮橙黄
+.xr-btn--orange {
+  background-color: #ff6a00;
+  border-color: #ff6a00;
+
+  i {
+    margin-right: 5px;
+    font-size: 13px;
+  }
+}
+
+.xr-btn--orange:hover,
+.xr-btn--orange.is-disabled,
+.xr-btn--orange.is-disabled:hover,
+.xr-btn--orange:focus {
+  color: #fff;
+  background: #fc7d63;
+  border-color: #fc7d63;
+}
+
+// 拒绝红
+.xr-btn--red {
+  background-color: #f94e4e;
+  border-color: #f94e4e;
+
+  i {
+    margin-right: 5px;
+    font-size: 13px;
+  }
+}
+
+.xr-btn--red:hover,
+.xr-btn--red.is-disabled,
+.xr-btn--red.is-disabled:hover,
+.xr-btn--red:focus {
+  color: #fff;
+  background: #fa6060;
+  border-color: #fa6060;
+}
+
+// 文字按钮
+$btn-delete-color: #f94e4e;
+
+.xr-text-btn {
+  cursor: pointer;
+}
+
+.xr-text-btn.primary {
+  color: $--color-primary;
+}
+
+.xr-text-btn.delete {
+  color: $btn-delete-color;
+}
+
+.xr-text-btn:hover {
+  text-decoration: underline;
+}
+
+.xr-text-btn + .xr-text-btn {
+  margin-left: 8px;
+}
+
+// 关闭按钮
+.xr-icon-close-btn {
+  padding: 0;
+  background: transparent !important;
+  border: none;
+  outline: none;
+
+  ::v-deep i {
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+// 背景按钮
+.backgroud-btn {
+  cursor: pointer;
+  border-radius: $--border-radius-base;
+
+  &:hover {
+    background-color: $--color-n30;
+  }
+}
+
+// 任意标签下加入类似按钮的圆形背景色
+.is-circle-bg {
+  position: relative;
+
+  &:hover::before {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    bottom: -3px;
+    left: -3px;
+    z-index: -1;
+    content: "";
+    background-color: rgba($color:$--color-b50, $alpha: 0.9);
+    border-radius: $--border-radius-base;
+  }
+}

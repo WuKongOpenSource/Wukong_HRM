@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kakarote.hrm.mapper.HrmFieldSortMapper">
+    <select id="queryListHead" resultType="com.kakarote.hrm.entity.VO.HrmFieldSortVO">
+        SELECT
+        a.id,
+        a.field_id,
+        a.field_name,
+        a.name,
+        a.type,
+        a.is_lock,
+        a.style AS width
+        FROM
+        wk_hrm_field_sort AS a
+        WHERE label = #{label} and user_id=#{userId} and is_hide = '0' and type not in (8,50)
+        ORDER BY sort asc
+    </select>
+    <select id="queryListHeadByIds" resultType="com.kakarote.hrm.entity.VO.HrmFieldSortVO">
+        SELECT
+        a.id,
+        a.field_id,
+        a.field_name,
+        a.name,
+        a.type,
+        a.style AS width
+        FROM
+        wk_hrm_field_sort AS a
+        WHERE label = #{label} and user_id=#{userId} and is_hide = '0' and type not in (8,50)
+        and id in
+        <foreach collection="ids" index="index" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+        ORDER BY sort asc
+    </select>
+</mapper>

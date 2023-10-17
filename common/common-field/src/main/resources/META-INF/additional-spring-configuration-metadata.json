@@ -1,0 +1,48 @@
+{
+  "groups": [
+    {
+      "name": "spring.elasticsearch",
+      "type": "com.kakarote.common.field.config.ElasticClientProperties",
+      "sourceType": "com.kakarote.common.field.config.ElasticClientProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.elasticsearch.uris",
+      "type": "java.util.List<java.lang.String>",
+      "description": "url.",
+      "sourceType": "com.kakarote.common.field.config.ElasticClientProperties"
+    },
+    {
+      "name": "spring.elasticsearch.username",
+      "type": "java.lang.String",
+      "description": "用户名.",
+      "sourceType": "com.kakarote.common.field.config.ElasticClientProperties"
+    },
+    {
+      "name": "spring.elasticsearch.password",
+      "type": "java.lang.String",
+      "description": "密码.",
+      "sourceType": "com.kakarote.common.field.config.ElasticClientProperties"
+    },
+    {
+      "name": "spring.elasticsearch.pathPrefix",
+      "type": "java.lang.String",
+      "description": "前缀.",
+      "sourceType": "com.kakarote.common.field.config.ElasticClientProperties"
+    },
+    {
+      "name": "spring.elasticsearch.connectionTimeout",
+      "type": "java.lang.Integer",
+      "description": "连接超时时间.",
+      "sourceType": "com.kakarote.common.field.config.ElasticClientProperties"
+    },
+    {
+      "name": "spring.elasticsearch.socketTimeout",
+      "type": "java.lang.Integer",
+      "description": "请求超时时间.",
+      "sourceType": "com.kakarote.common.field.config.ElasticClientProperties"
+    }
+  ],
+  "hints": []
+}

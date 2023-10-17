@@ -1,0 +1,80 @@
+.dept-cell {
+  height: 30px;
+  cursor: pointer;
+
+  &__hd {
+    flex: 1;
+    padding: 0 8px;
+  }
+}
+
+// 全选
+.all-check {
+  line-height: 30px;
+
+  > .label {
+    margin-left: 8px;
+  }
+}
+
+.tree-breadcrumb {
+  height: 30px;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.letter-block {
+  height: 100%;
+  padding-right: 30px;
+  font-size: $--font-size-base;
+
+  .header {
+    position: relative;
+    height: 21px;
+    line-height: 21px;
+
+    > .label {
+      position: absolute;
+      left: 0;
+      z-index: 2;
+      padding-right: 8px;
+      color: $--color-n70;
+      background-color: white;
+    }
+
+    > .line {
+      position: absolute;
+      top: 10px;
+      right: 0;
+      left: 0;
+      z-index: 1;
+      height: 0.5px;
+      background-color: $--border-color-base;
+    }
+  }
+
+  .children {
+  }
+}
+
+.search-view {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  font-size: $--font-size-base;
+
+  &__hd {
+    line-height: 30px;
+    color: $--color-n70;
+
+    span {
+      margin: 0 4px;
+      color: $--color-black;
+    }
+  }
+
+  &__bd {
+    height: calc(100% - 30px);
+    overflow-y: auto;
+  }
+}

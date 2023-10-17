@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kakarote.hrm.mapper.AdminMessageMapper">
+    <select id="queryList" resultType="com.kakarote.hrm.entity.PO.AdminMessage">
+        select a.message_id, a.title, a.content, a.label, a.type, a.type_id, a.create_user, a.recipient_user,
+        a.create_time, a.is_read, a.read_time,b.realname,a.create_user_email,
+        (CASE WHEN  DATE_SUB(CURDATE(), INTERVAL 7 DAY) >= date(a.create_time) THEN 0 ELSE 1 END) as valid
+        from wk_admin_message as a
+        left join wk_admin_user as b on a.create_user = b.user_id
+        where a.recipient_user = #{data.userId}
+        <if test="data.isRead != null">
+            and is_read=#{data.isRead}
+        </if>
+        <if test="data.label != null">
+            and label=#{data.label}
+        </if>
+        <if test="data.igLabel != null">
+            AND label not IN
+            <foreach collection="data.igLabel" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="data.type != null">
+            and type=#{data.type}
+        </if>
+        and a.create_time &lt;= now()
+        order by a.create_time desc
+    </select>
+    
+    <select id="queryUnreadCount" resultType="com.kakarote.hrm.entity.VO.AdminMessageVO">
+        select count(1) as allCount,
+        count(if(label = 4,1,null)) as announceCount,
+        count(if(label = 3,1,null)) as examineCount,
+        count(if(label = 20,1,null)) as crmExamineCount,
+        count(if(label = 1,1,null)) as taskCount,
+        count(if(label = 2,1,null)) as logCount,
+        count(if(label = 6,1,null)) as crmCount,
+        count(if(label = 5 and create_time &lt; now(),1,null)) as eventCount,
+        count(if(label = 7,1,null)) as knowledgeCount,
+        count(if(label = 8,1,null)) as hrmCount,
+        count(if(label = 9,1,null)) as jxcCount
+        from wk_admin_message as a where is_read = 0 and recipient_user =  #{userId}  and create_time &lt; now()
+    </select>
+    <select id="queryContract" resultType="java.util.Map">
+        select money,b.customer_name,b.customer_id,a.num
+        from wk_crm_contract a
+        left join wk_crm_customer b on a.customer_id = b.customer_id
+        where contract_id = #{typeId}
+    </select>
+    <select id="queryData" resultType="java.util.Map">
+        select type_id,label,flow_name,
+        (CASE
+        WHEN label = 1 THEN (select leads_name from wk_crm_leads where leads_id = flow.type_id)
+        WHEN label = 2 THEN (select customer_name from wk_crm_customer where customer_id = flow.type_id)
+        WHEN label = 3 THEN (select `name` from wk_crm_contacts where contacts_id = flow.type_id)
+        WHEN label = 4 THEN (select `name` from wk_crm_product where product_id = flow.type_id)
+        WHEN label = 5 THEN (select business_name from wk_crm_business where business_id = flow.type_id)
+        WHEN label = 6 THEN (select `name` from wk_crm_contract where contract_id = flow.type_id)
+        WHEN label = 7 THEN (select number from wk_crm_receivables where receivables_id = flow.type_id)
+        WHEN label = 8 THEN (select num from wk_crm_receivables_plan where receivables_plan_id = flow.type_id)
+        WHEN label = 17 THEN (select visit_number from wk_crm_return_visit where visit_id = flow.type_id)
+        WHEN label = 18 THEN (select invoice_apply_number from wk_crm_invoice where invoice_id = flow.type_id)
+        ELSE NULL END) as name
+        from wk_crm_flow_data flow where id = #{typeId}
+    </select>
+    <select id="queryScrmData" resultType="java.util.Map">
+        select type_id,label,flow_name,
+        (CASE
+        WHEN label = 1 THEN (select leads_name from wk_crm_leads where leads_id = flow.type_id)
+        WHEN label = 2 THEN (select customer_name from wk_scrm_customer where customer_id = flow.type_id)
+        WHEN label = 3 THEN (select `name` from wk_crm_contacts where contacts_id = flow.type_id)
+        WHEN label = 4 THEN (select `name` from wk_crm_product where product_id = flow.type_id)
+        WHEN label = 5 THEN (select business_name from wk_crm_business where business_id = flow.type_id)
+        WHEN label = 6 THEN (select `name` from wk_crm_contract where contract_id = flow.type_id)
+        WHEN label = 7 THEN (select number from wk_crm_receivables where receivables_id = flow.type_id)
+        WHEN label = 8 THEN (select num from wk_crm_receivables_plan where receivables_plan_id = flow.type_id)
+        WHEN label = 17 THEN (select visit_number from wk_crm_return_visit where visit_id = flow.type_id)
+        WHEN label = 18 THEN (select invoice_apply_number from wk_crm_invoice where invoice_id = flow.type_id)
+        ELSE NULL END) as name
+        from wk_scrm_flow_data flow where id = #{typeId}
+    </select>
+    <select id="queryContractProduct" resultType="com.alibaba.fastjson.JSONObject">
+         select b.product_id,b.name from wk_crm_contract_product a
+         RIGHT JOIN wk_crm_product b on a.product_id = b.product_id
+         where contract_id = #{typeId}
+    </select>
+    <select id="queryReceivables" resultType="java.util.Map">
+         select a.`number`,a.money,
+         b.customer_name,
+         b.customer_id,
+         c.name contract_name,
+         c.contract_id
+         from wk_crm_receivables a
+         left join wk_crm_customer b on a.customer_id = b.customer_id
+         left join wk_crm_contract c on a.contract_id= c.contract_id
+         where  receivables_id = #{typeId}
+    </select>
+    <select id="queryInvoice" resultType="java.util.Map">
+         select invoice_money,invoice_date,
+         b.customer_name,
+         b.customer_id,
+         c.name contract_name,
+        c.contract_id,
+        a.invoice_apply_number as invoiceApplyNumber
+         from wk_crm_invoice a
+         left join wk_crm_customer b on a.customer_id = b.customer_id
+         left join wk_crm_contract c on a.contract_id= c.contract_id
+         where invoice_id = #{typeId}
+    </select>
+    <select id="queryCustomer" resultType="java.util.Map">
+        select customer_name,customer_id
+        from wk_crm_customer
+        where customer_id = #{typeId}
+    </select>
+</mapper>

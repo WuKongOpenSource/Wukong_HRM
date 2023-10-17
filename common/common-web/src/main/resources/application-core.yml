@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: hrm
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  mvc:
+    format:
+      date: yyyy-MM-dd HH:mm:ss
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      # 上传文件临时目录，需要先创建此目录
+      location: /mnt/upload/
+  jackson:
+    dateFormat: yyyy-MM-dd HH:mm:ss
+    timeZone: GMT+8
+  web:
+    resources:
+      add-mappings: true
+mybatis-plus:
+  configuration:
+    call-setters-on-nulls: true
+  mapper-locations: classpath*:/mapper/xml/*.xml
+wk:
+  config:
+    # 是否开启接口文档
+    enableDoc: true

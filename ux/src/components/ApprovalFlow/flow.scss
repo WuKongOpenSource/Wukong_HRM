@@ -1,0 +1,550 @@
+/* stylelint-disable scss/dollar-variable-pattern */
+$orangeColor: #f78b22;
+$greenColor: #30b039;
+$darkBlueColor: #15388b;
+$lineColor: #b2b2b2;
+$backgroundColor: #f5f6f9;
+
+.wk-approve-flow-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: auto;
+  background-color: $backgroundColor;
+
+  .el-button-group {
+    position: fixed;
+    top: 90px;
+    right: 40px;
+    z-index: 2;
+  }
+
+  .group-btn {
+    background: $--color-white;
+    border: $--border-base;
+  }
+}
+
+.wk-flow-modal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.wk-approve-flow {
+  position: relative;
+  display: inline-block;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  min-width: min-content;
+  padding: 50px 0;
+  transform-origin: 50% 0 0;
+
+  // 新建按钮外层
+  .add-node-btn-wrap {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 240px;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      width: 1px;
+      height: 100%;
+      margin: auto;
+      content: "";
+      background-color: $lineColor;
+    }
+  }
+
+  // 新建按钮
+  .add-node-btn {
+    z-index: 1;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: center;
+    width: 240px;
+    padding: 20px 0 32px;
+    user-select: none;
+    -webkit-box-flex: 1;
+
+    .el-button {
+      padding: 6px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+      &:hover {
+        box-shadow: 0 13px 27px 0 rgba(0, 0, 0, 0.1);
+        transform: scale(1.3);
+      }
+    }
+  }
+
+  // 节点
+  .wk-node {
+    position: relative;
+    display: inline-flex;
+
+    // flex-direction: column;
+    // flex-wrap: wrap;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0 50px;
+
+    &-wrap {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      width: 220px;
+      min-height: 72px;
+      cursor: pointer;
+      background: #fff;
+      border-radius: 4px;
+
+      &:not(.is-first)::before {
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        width: 0;
+        height: 4px;
+        content: "";
+        border-color: $lineColor transparent transparent;
+        border-style: solid;
+        border-width: 8px 6px 4px;
+        transform: translateX(-50%);
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        pointer-events: none;
+        content: "";
+        border: 1px solid transparent;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+        transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+
+      .header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 24px;
+        padding-right: 10px;
+        padding-left: 10px;
+        font-size: 12px;
+        line-height: 24px;
+        color: #fff;
+        text-align: left;
+        border-radius: 4px 4px 0 0;
+
+        .icon {
+          margin-right: 5px;
+          font-size: 12px;
+        }
+
+        .title {
+          overflow: hidden;
+          line-height: 15px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          flex: 1;
+        }
+
+        .el-input--mini .el-input__inner {
+          height: 20px;
+          line-height: 20px;
+        }
+
+        .wk-copy {
+          flex-shrink: 0;
+          color: $--color-white;
+          visibility: hidden;
+        }
+
+        .wk-copy + .close {
+          margin-left: 4px;
+        }
+
+        .close {
+          flex-shrink: 0;
+          font-size: 14px;
+          color: $--color-white;
+          visibility: hidden;
+        }
+      }
+
+      .body {
+        position: relative;
+        padding: 16px;
+        padding-right: 30px;
+        font-size: 14px;
+
+        .content {
+          display: flex;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+        }
+
+        .el-icon-arrow-right {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          width: 20px;
+          height: 14px;
+          font-size: 14px;
+          color: $--color-text-primary;
+          transform: translateY(-50%);
+        }
+      }
+
+      &:not(.is-disabled):hover {
+        .close {
+          visibility: visible;
+        }
+
+        .wk-copy {
+          visibility: visible;
+        }
+
+        &::after {
+          border: 1px solid $--color-primary;
+          box-shadow: 0 0 6px 0 rgba(50, 150, 250, 0.3);
+        }
+      }
+
+      &:not(.is-disabled).is-error {
+        &::after {
+          border: 1px solid #f56c6c;
+        }
+      }
+
+      &.is-disabled {
+        cursor: unset;
+      }
+    }
+  }
+
+  // 条件节点
+  .wk-conditon-node {
+    display: inline-flex;
+    width: 100%;
+
+    &-wrap {
+      display: flex;
+
+      // flex-direction: column;
+      // flex-wrap: wrap;
+      flex-flow: column wrap;
+      flex-shrink: 0;
+      align-items: center;
+      width: 100%;
+      min-height: 270px;
+
+      .conditon-wrap-body {
+        position: relative;
+        display: flex;
+        height: auto;
+        min-height: 180px;
+        margin-top: 13px;
+        overflow: visible;
+        border-top: 1px solid $lineColor;
+        border-bottom: 1px solid $lineColor;
+
+        .add-btn {
+          position: absolute;
+          top: -14px;
+          left: 50%;
+          z-index: 1;
+          padding: 6px 10px;
+          font-size: 12px;
+          color: $--color-primary;
+          cursor: pointer;
+          border-color: $--color-primary;
+          border-radius: 13px;
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+          transform: translateX(-50%);
+          transform-origin: center center;
+
+          &:hover {
+            background-color: white;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+            transform: translateX(-50%) scale(1.05);
+          }
+        }
+      }
+
+      .condition {
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        background: $backgroundColor;
+
+        .cover-line {
+          position: absolute;
+          width: 50%;
+          height: 3px;
+          background-color: $backgroundColor;
+
+          &.is-top-left {
+            top: -2px;
+            left: -1px;
+          }
+
+          &.is-bottom-left {
+            bottom: -2px;
+            left: -1px;
+          }
+
+          &.is-top-right {
+            top: -2px;
+            right: -1px;
+          }
+
+          &.is-bottom-right {
+            right: -1px;
+            bottom: -2px;
+          }
+        }
+
+        &::before {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 0;
+          width: 1px;
+          height: 100%;
+          margin: auto;
+          content: "";
+          background-color: $lineColor;
+        }
+
+        &-node {
+          display: inline-flex;
+          flex-direction: column;
+          min-height: 220px;
+          -webkit-box-flex: 1;
+
+          &-wrap {
+            position: relative;
+            display: inline-flex;
+            flex-direction: column;
+            flex-grow: 1;
+            align-items: center;
+            justify-content: center;
+            padding-top: 30px;
+            padding-right: 50px;
+            padding-left: 50px;
+            -webkit-box-flex: 1;
+
+            &::before {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              width: 1px;
+              height: 100%;
+              margin: auto;
+              content: "";
+              background-color: $lineColor;
+            }
+          }
+        }
+
+        &-wrap {
+          position: relative;
+          width: 220px;
+          min-height: 72px;
+          padding: 14px 19px;
+          cursor: pointer;
+          background: #fff;
+          border-radius: 4px;
+
+          &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+            pointer-events: none;
+            content: "";
+            border: 1px solid transparent;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+            transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+          }
+
+          &:not(.is-disabled):hover {
+            .close {
+              visibility: visible !important;
+            }
+            .priority {
+              display: none;
+            }
+            .wk-copy {
+              visibility: visible !important;
+            }
+
+            &::after {
+              border: 1px solid $--color-primary;
+              box-shadow: 0 0 6px 0 rgba(50, 150, 250, 0.3);
+            }
+          }
+
+          &:not(.is-disabled).is-error {
+            &::after {
+              border: 1px solid #f56c6c;
+            }
+          }
+
+          &.is-disabled {
+            cursor: unset;
+          }
+
+          .header {
+            position: relative;
+            font-size: 12px;
+            line-height: 16px;
+            color: #30b039;
+            text-align: left;
+
+            .title {
+              display: inline-block;
+              max-width: 120px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+
+            .el-input--mini .el-input__inner {
+              max-width: 120px;
+              height: 20px;
+              line-height: 20px;
+            }
+
+            .el-input--mini {
+              display: inline;
+            }
+
+            .priority {
+              float: right;
+              margin-right: 12px;
+              color: $--color-text-secondary;
+            }
+
+            .wk-copy {
+              float: right;
+              margin-right: 8px;
+              color: $--color-text-secondary;
+              visibility: hidden;
+              margin-top: 1px;
+            }
+
+            .close {
+              position: absolute;
+              top: 50%;
+              right: -12px;
+              width: 20px;
+              height: 20px;
+              font-size: 14px;
+              line-height: 20px;
+              color: $--color-text-secondary;
+              text-align: center;
+              visibility: hidden;
+              transform: translateY(-50%);
+            }
+          }
+
+          .content {
+            display: flex;
+            margin-top: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+          }
+        }
+      }
+    }
+  }
+
+  // 结束节点
+  .wk-end-node {
+    .circle {
+      width: 6px;
+      height: 6px;
+      margin: auto;
+      background: $lineColor;
+      border-radius: 50%;
+    }
+
+    .text {
+      margin-top: 5px;
+      text-align: center;
+    }
+  }
+}
+
+.el-popper {
+  .add-node-approve {
+    padding: 5px 0;
+  }
+
+  .add-node-approve-btn {
+    padding: 0 20px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 36px;
+    color: $--color-text-primary;
+    list-style: none;
+    cursor: pointer;
+    outline: none;
+
+    i {
+      margin-right: 5px;
+
+      &.is-orange {
+        color: $orangeColor;
+      }
+
+      &.is-green {
+        color: $greenColor;
+      }
+    }
+
+    &:hover {
+      color: $--color-primary;
+      background-color: #ecf5ff;
+    }
+  }
+}

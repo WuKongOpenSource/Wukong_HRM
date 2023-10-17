@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_outer_classname = "OperateLogEntity";
+
+message Entity {
+
+  //请求地址
+  string requestUri = 1;
+
+  //操作行为
+  uint32 behavior = 2;
+
+  //所属应用
+  uint32 apply = 3;
+
+  //客户端IP
+  string clientIp = 4;
+
+  //操作模块
+  uint32 module = 5;
+
+  //创建人
+  uint64 createUserId = 6;
+
+  //创建时间
+  string createTime = 8;
+
+  //操作对象
+  string operation_obj = 9;
+  //操作详情
+  string operation_info = 10;
+
+  //访问类型
+  string equipmentType = 11;
+  //操作类型
+  uint32 type = 12;
+}

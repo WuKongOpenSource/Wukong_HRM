@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kakarote.hrm.mapper.HrmEmployeeAchievementFileMapper">
+    <select id="queryEmployeeAchievementFileList" resultType="com.kakarote.hrm.entity.VO.EmployeeAchievementFileVO">
+        select ef.*,e.employee_name,e.mobile,e.job_number,e.status,d.name as deptName,ap.appraisal_plan_name,ae.level as
+        recentlyLevel,ae.score as recentlyScore from wk_hrm_employee_achievement_file ef left join wk_hrm_employee e on
+        ef.employee_id = e.employee_id
+        left join wk_hrm_appraisal_employee ae on ef.recently_appraisal_employee_id = ae.appraisal_employee_id
+        left join wk_hrm_appraisal_plan ap on ap.appraisal_plan_id = ae.appraisal_plan_id
+        left join wk_hrm_dept d on e.dept_id = d.dept_id
+        where 1=1
+        <choose>
+            <when test="employeeIds != null and employeeIds.size > 0">
+                and ef.employee_id in
+                <foreach collection="employeeIds" index="index" item="employeeId" open="(" close=")" separator=",">
+                    #{employeeId}
+                </foreach>
+            </when>
+            <when test="employeeIds != null and employeeIds.size == 0">
+                and 1=2
+            </when>
+        </choose>
+    </select>
+
+    <select id="queryRecentlyAppraisal" resultType="com.kakarote.hrm.entity.PO.HrmAppraisalEmployee">
+        select ae.* from wk_hrm_appraisal_employee ae
+        left join wk_hrm_appraisal_plan p on ae.appraisal_plan_id = p.appraisal_plan_id
+        where p.paid_for_month = #{month} and ae.employee_id = #{employeeId} and ae.appraisal_status = 4
+        order by ae.file_time desc limit 1
+    </select>
+
+    <select id="queryAchievementFileByEmployeeId" resultType="com.kakarote.hrm.entity.PO.HrmEmployeeAchievementFile">
+        select * from wk_hrm_employee_achievement_file where employee_id = #{employeeId}
+    </select>
+
+    <select id="updateAchievementCount" resultType="java.lang.Void">
+        update wk_hrm_employee_achievement_file set recently_appraisal_employee_id =
+        #{data.appraisalEmployeeId},appraisal_count = #{data.appraisalCount},update_time = #{data.updateTime} where
+        employee_id = #{data.employeeId}
+    </select>
+
+    <select id="removeByEmployeeId" resultType="java.lang.Void">
+        delete from wk_hrm_employee_achievement_file where employee_id = #{employeeId}
+    </select>
+</mapper>

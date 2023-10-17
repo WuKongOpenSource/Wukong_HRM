@@ -1,0 +1,72 @@
+// 普通form 分两列 ,自定义字段依靠 wk-form-items
+.wk-form.is-two-columns {
+  display: flex;
+  flex-wrap: wrap;
+
+  .el-form-item.is-required .el-form-item__label::before {
+    margin-right: 0;
+  }
+
+  .el-form-item {
+    flex: 0 0 50%;
+    flex-shrink: 0;
+    padding: 0 12px;
+    margin-bottom: 10px;
+
+    .el-form-item__label {
+      padding-bottom: 4px;
+      line-height: 1.5;
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    .el-form-item__error {
+      padding-top: 2px;
+    }
+  }
+}
+
+.wk-form.is-dialog {
+  margin: 0 -8px;
+
+  ::v-deep .el-form-item {
+    padding: 0 20px;
+  }
+}
+
+.wk-form.is-vertical-dialog {
+  display: block;
+  margin: 0 -8px;
+
+  ::v-deep .el-form-item {
+    flex: 0 0 100%;
+    padding: 0 20px;
+  }
+}
+
+::v-deep .wk-form-item {
+  margin-bottom: 12px;
+
+  .el-form-item__label {
+    padding-bottom: 4px !important;
+    line-height: 1.5;
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+  .el-form-item__content {
+    line-height: $--input-height;
+  }
+
+  .el-form-item__error {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  .el-form-item.is-desc_text {
+    .el-form-item__label {
+      display: none;
+    }
+  }
+}

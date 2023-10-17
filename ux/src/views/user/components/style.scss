@@ -1,0 +1,56 @@
+.head {
+  font-size: 16px;
+
+  .icon {
+    margin-right: 10px;
+    color: $--color-primary;
+  }
+
+  .text {
+    color: $--color-text-primary;
+    font-weight: bold;
+  }
+}
+
+.el-form {
+  margin-top: 40px;
+
+  .el-form-item {
+    margin-bottom: 18px;
+
+    .el-input,
+    .el-select,
+    .el-button {
+      width: 376px;
+    }
+
+    .el-button {
+      height: 36px;
+    }
+
+    .user-box {
+      .user-img {
+        margin-right: 60px;
+
+        &[lazy="loading"] {
+          margin: 0 60px 0 0;
+        }
+      }
+
+      .change-avatar {
+        padding: 8px;
+        font-size: 12px;
+        line-height: 1;
+        color: $--color-primary;
+        cursor: pointer;
+        border: 1px solid $--color-primary;
+        border-radius: $--border-radius-base;
+
+        &:hover {
+          color: white;
+          background-color: $--color-primary;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+@mixin clearfix {
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+}
+
+/* stylelint-disable-next-line scss/at-mixin-pattern */
+@mixin scrollBar {
+  &::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c7d1da;
+    border-radius: 3px;
+  }
+}
+
+@mixin relative {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

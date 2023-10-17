@@ -1,0 +1,33 @@
+/* stylelint-disable scss/dollar-variable-pattern */
+/* stylelint-disable property-no-unknown */
+/* stylelint-disable selector-pseudo-class-no-unknown */
+@import "~element-ui/packages/theme-chalk/src/common/var.scss";
+
+$xr-backgroud: #f5f6f9;
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+  colorPrimary: $--color-primary;
+  colorBlack: $--color-black;
+  colorSuccess: $--color-success;
+  colorWarning: $--color-warning;
+  colorDanger: $--color-danger;
+  colorN40: $--color-n40;
+
+  // echarts
+  axisLineColor: $--color-n40; // 坐标轴
+  axisLabelFontWeight: $--font-weight-primary; // 坐标轴font weight
+}
+
+$--detail-view-top: 0;
+
+// 默认 间隔基础单元
+$--interval-base: 8px;
+
+// 侧滑详情的宽度
+$--detail-width-base: 75%;
+
+// 向下阴影
+$--box-shadow-bottom-light: rgba(9, 30, 66, 0.25) 0 1px 1px, rgba(9, 30, 66, 0.31) 0 0 1px;
+$--box-shadow-hover-bottom-light: rgba(9, 30, 66, 0.25) 0 2px 4px, rgba(9, 30, 66, 0.31) 0 0 1px;

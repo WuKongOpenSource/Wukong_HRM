@@ -1,0 +1,17 @@
+// 顶部蓝色边线
+.section-top-border {
+  position: relative;
+  border: $--border-base;
+  border-radius: $--border-radius-base;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+    content: " ";
+    background-color: $--color-b200;
+    border-radius: 2px;
+  }
+}

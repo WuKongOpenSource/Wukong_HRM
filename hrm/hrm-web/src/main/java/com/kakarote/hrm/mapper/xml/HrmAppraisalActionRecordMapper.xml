@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kakarote.hrm.mapper.HrmAppraisalActionRecordMapper">
+    <select id="queryAppraisalRecordList" resultType="com.kakarote.hrm.entity.VO.QueryAppraisalRecordListVO">
+        select r.*,e.employee_name as realname from wk_hrm_appraisal_action_record r left join wk_hrm_employee e on
+        r.create_user_id = e.employee_id
+        where r.type_id = #{appraisalEmployeeId} and r.type = #{type}
+        order by create_time asc
+    </select>
+</mapper>

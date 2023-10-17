@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kakarote.hrm.mapper.HrmEmployeeLeaveRecordMapper">
+    <select id="queryLeaveRecordPageList" resultType="java.util.Map">
+        SELECT b.employee_name,b.job_number,d.`name` as
+        dept_name,b.post,a.examine_id,a.leave_type,a.leave_start_time,a.leave_end_time,a.leave_day,a.leave_reason,a.remark
+        FROM wk_hrm_employee_leave_record a
+        LEFT JOIN wk_hrm_employee b on   a.employee_id=b.employee_id
+        LEFT JOIN wk_hrm_dept d on b.dept_id = d.dept_id
+        where 1=1
+        <if test="data.search != null and data.search != ''">
+            and (b.employee_name like concat('%',#{data.search},'%')
+            or b.job_number like concat('%',#{data.search},'%'))
+        </if>
+        <if test="data.times != null">
+            and date_format(a.leave_start_time,'%y-%m-%d') between date_format(#{data.times[0]},'%y-%m-%d') and
+            date_format(#{data.times[1]},'%y-%m-%d')
+        </if>
+        <if test="data.deptIds != null and data.deptIds.size > 0">
+            and b.dept_id in
+            <foreach collection="data.deptIds" index="index" item="deptId" open="(" close=")" separator=",">
+                #{deptId}
+            </foreach>
+        </if>
+        <if test="data.employeeId != null">
+            and a.employee_id=#{data.employeeId}
+        </if>
+        <if test="data.leaveTypes != null and data.leaveTypes.size > 0">
+            and a.leave_type in
+            <foreach collection="data.leaveTypes" index="index" item="leaveType" open="(" close=")" separator=",">
+                #{leaveType}
+            </foreach>
+        </if>
+        <choose>
+            <when test="data.sortField != null and data.sortField != ''">
+                ORDER BY a.${data.sortField}
+                <if test="data.order == 1">
+                    desc
+                </if>
+                <if test="data.order == 2">
+                    asc
+                </if>
+            </when>
+            <otherwise>
+                ORDER BY a.leave_start_time asc
+            </otherwise>
+        </choose>
+    </select>
+    <select id="queryLeaveRecord" resultType="com.kakarote.hrm.entity.PO.HrmEmployeeLeaveRecord">
+        SELECT * FROM wk_hrm_employee_leave_record
+        WHERE employee_id=#{employeeId}
+        <![CDATA[and #{leaveTime} >=leave_start_time and #{leaveTime}<=leave_end_time ]]>
+    </select>
+    <select id="queryStartOrEndLeaveRecord" resultType="com.kakarote.hrm.entity.PO.HrmEmployeeLeaveRecord">
+        SELECT * FROM wk_hrm_employee_leave_record
+        WHERE employee_id=#{employeeId}
+        <![CDATA[and #{leaveTime} >=leave_start_time and #{leaveTime}<=leave_end_time ]]>
+        ORDER BY create_time desc limit 1
+    </select>
+
+    <select id="queryLeaveEmpCount" resultType="java.lang.Integer">
+        select count(leave_record_id)
+        FROM wk_hrm_employee_leave_record t1
+        inner join (
+        SELECT max(leave_record_id) as id FROM wk_hrm_employee_leave_record
+        WHERE 1=1
+        <![CDATA[and #{currentDate} >=leave_start_time and #{currentDate}<=leave_end_time ]]>
+        <choose>
+            <when test="employeeIds != null and employeeIds.size > 0">
+                and employee_id in
+                <foreach collection="employeeIds" index="index" item="employeeId" open="(" close=")" separator=",">
+                    #{employeeId}
+                </foreach>
+            </when>
+            <when test="employeeIds != null and employeeIds.size == 0">
+                and 1=2
+            </when>
+        </choose>
+        group by employee_id
+        ) t2 on t1.leave_record_id=t2.id
+    </select>
+</mapper>

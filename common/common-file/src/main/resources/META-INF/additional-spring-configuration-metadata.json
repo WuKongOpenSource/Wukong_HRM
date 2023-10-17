@@ -1,0 +1,60 @@
+{
+  "groups": [
+    {
+      "name": "wukong.common.upload",
+      "type": "com.kakarote.common.upload.entity.UploadProperties",
+      "sourceType": "com.kakarote.common.upload.entity.UploadProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "wukong.common.upload.access-key-id",
+      "type": "java.lang.String",
+      "description": "账号",
+      "sourceType": "com.kakarote.common.upload.entity.UploadProperties"
+    },
+    {
+      "name": "wukong.common.upload.access-key-secret",
+      "type": "java.lang.String",
+      "description": "密码",
+      "sourceType": "com.kakarote.common.upload.entity.UploadProperties"
+    },
+    {
+      "name": "wukong.common.upload.bucket-name",
+      "type": "java.lang.String",
+      "description": "桶名称",
+      "sourceType": "com.kakarote.common.upload.entity.UploadProperties"
+    },
+    {
+      "name": "wukong.common.upload.domain",
+      "type": "java.lang.String",
+      "description": "默认的域名",
+      "sourceType": "com.kakarote.common.upload.entity.UploadProperties"
+    },
+    {
+      "name": "wukong.common.upload.endpoint",
+      "type": "java.lang.String",
+      "description": "端点",
+      "sourceType": "com.kakarote.common.upload.entity.UploadProperties"
+    },
+    {
+      "name": "wukong.common.upload.extra",
+      "type": "java.util.Map<java.lang.String,java.lang.Object>",
+      "description": "额外数据",
+      "sourceType": "com.kakarote.common.upload.entity.UploadProperties"
+    },
+    {
+      "name": "wukong.common.upload.region",
+      "type": "java.lang.String",
+      "description": "区域",
+      "sourceType": "com.kakarote.common.upload.entity.UploadProperties"
+    },
+    {
+      "name": "wukong.common.upload.type",
+      "type": "com.kakarote.common.upload.entity.UploadType",
+      "description": "上传类型：oss，qnc,cos,aws_s3,local,ftp",
+      "sourceType": "com.kakarote.common.upload.entity.UploadProperties"
+    }
+  ],
+  "hints": []
+}

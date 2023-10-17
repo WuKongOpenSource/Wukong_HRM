@@ -1,0 +1,53 @@
+server:
+  port: 44311
+spring:
+  profiles:
+    active: core
+  application:
+    name: hrm
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    database: 12
+    lettuce:
+      pool:
+        max-active: 300
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/wk_hrm_open?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false&serverTimezone=Asia/Shanghai&useAffectedRows=true&allowPublicKeyRetrieval=true
+    username: root
+    password: password
+  elasticsearch:
+    uris: 192.168.1.210:9200
+    username: elastic
+    password: xOCpPgRD4cypUCPBlapP
+jetcache:
+  statIntervalMinutes: 0
+  areaInCacheName: false
+  local:
+    default:
+      type: caffeine
+      limit: 1000
+      keyConvertor: fastjson
+      expireAfterWriteInMillis: 100000
+  remote:
+    default:
+      type: redis.lettuce
+      keyConvertor: fastjson
+      #mode: cluster
+      # 不需要password的redis连接为 redis://127.0.0.1:6379/
+      uri: redis://123456@127.0.0.1:6379/
+wukong:
+  ids:
+    auth:
+      appId: 1711560062472347648
+      clientId: 5d9c9d18-162f-4df3-b2df-8b8b64e409df
+      clientSecret: f0d4e98c-fa6b-43a7-87ec-a06fba038d5c
+      requestUri: http://192.168.1.79:88/open/oauth2/token
+      redirectUri: http://192.168.1.79:88/open/oauth2/token
+  common:
+    upload:
+      type: local
+      region: D:/wukong
+      domain: commonFile/download
+      bucket-name: D:/wukong

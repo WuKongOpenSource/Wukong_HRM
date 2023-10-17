@@ -1,0 +1,148 @@
+.side-detail-main {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.d-full-view {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 75%;
+  min-width: 926px;
+}
+
+.d-view {
+  position: fixed;
+  top: $--detail-view-top;
+  right: 0;
+  bottom: 0;
+  width: $--detail-width-base;
+  min-width: 926px;
+}
+
+// 详情头
+.wk-detail-header {
+  flex-shrink: 0;
+}
+
+// 详情
+.side-detail__tabs {
+  ::v-deep .el-tabs__item {
+    top: 2px;
+    margin-top: -2px;
+    font-size: 12px;
+    color: $--color-text-primary;
+  }
+
+  ::v-deep .el-tabs__nav-scroll {
+    min-height: 39px;
+  }
+
+  ::v-deep .el-tabs__item.is-active {
+    color: $--color-text-primary;
+    border-top: 2px solid $--color-primary;
+  }
+
+  ::v-deep .el-tabs {
+    height: calc(100% - 15px) !important;
+  }
+
+  ::v-deep .el-tabs__content {
+    position: relative;
+    height: calc(100% - 40px) !important;
+    padding: 0;
+    overflow: hidden;
+
+    .el-tab-pane {
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+
+  &--left {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    box-shadow: none;
+  }
+
+  &--right {
+    flex-shrink: 0;
+    width: 300px;
+    min-width: 300px;
+    height: calc(100% - 15px);
+    margin-left: 15px;
+    background-color: white;
+    border-top: 1px solid $--border-color-base;
+    border-bottom: 1px solid $--border-color-base;
+    border-left: 1px solid $--border-color-base;
+    box-shadow: none;
+  }
+}
+
+// 详情
+::v-deep .side-detail__tabs--default {
+  flex: 1;
+  overflow: hidden;
+
+  .el-tabs__item {
+    top: 2px;
+    margin-top: -2px;
+    color: $--color-text-primary;
+  }
+
+  .el-tabs__nav-scroll {
+    min-height: 39px;
+  }
+
+  .el-tabs__item.is-active {
+    color: $--color-text-primary;
+  }
+
+  .el-tabs {
+    height: calc(100% - 15px) !important;
+  }
+
+  .el-tabs__content {
+    position: relative;
+    height: calc(100% - 55px) !important;
+    padding: 0;
+    overflow: hidden;
+
+    .el-tab-pane {
+      height: 100%;
+      overflow-y: auto;
+    }
+  }
+
+  .el-tabs__nav-wrap::after {
+    height: 1px;
+  }
+
+  &--left {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    box-shadow: none;
+  }
+
+  &--right {
+    flex-shrink: 0;
+    width: 300px;
+    min-width: 300px;
+    height: calc(100% - 15px);
+    margin-left: 15px;
+    background-color: white;
+    border-top: 1px solid $--border-color-base;
+    border-bottom: 1px solid $--border-color-base;
+    border-left: 1px solid $--border-color-base;
+    box-shadow: none;
+  }
+}
+
+.side-detail-tabs-content {
+  height: 100%;
+  overflow: auto;
+}

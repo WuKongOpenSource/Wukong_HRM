@@ -1,0 +1,30 @@
+@mixin v-align {
+  vertical-align: middle;
+}
+
+@mixin cursor {
+  cursor: pointer;
+}
+
+@mixin color9 {
+  color: $--color-text-secondary;
+}
+
+.popover-btn-group {
+  padding: 10px 0;
+  margin: -12px;
+
+  p {
+    height: 26px;
+    padding-left: 20px;
+    font-size: 13px;
+    line-height: 26px;
+
+    @include cursor;
+  }
+}
+
+.popover-btn-group p:hover {
+  color: #2362fb;
+  background: #f7f8fa;
+}

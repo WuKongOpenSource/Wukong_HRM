@@ -1,0 +1,238 @@
+// https://github.com/ElemeFE/element/issues/10308
+// .el-table th.is-leaf {
+//   padding: 8px 0;
+//   background-color: $--background-color-base;
+// }
+
+// .el-table th.is-sortable {
+//   padding: 3px;
+// }
+
+// .el-table th:hover {
+//   background-color: #E7EDF4;
+// }
+
+// 忽略勾选
+.el-table th.is-sortable:not(.el-table-column--selection) > .cell {
+  display: flex;
+  align-items: center;
+  font-weight: $--messagebox-font-weight;
+
+  .label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    padding-right: 40px !important;
+    .caret-wrapper {
+      display: inline-flex;
+    }
+  }
+
+  .caret-wrapper {
+    flex-shrink: 0;
+    display: none;
+  }
+}
+
+// 勾选后填充背景色
+.el-table th.el-table__cell.ascending,
+.el-table th.el-table__cell.descending {
+  background-color: $--background-color-base;
+
+  .cell {
+    padding-right: 16px;
+  }
+  .caret-wrapper {
+    display: inline-flex;
+  }
+}
+
+// CRM 高级筛选 th
+.el-table.is-filter-table {
+  th.column > .cell {
+    // padding-right: 50px;
+
+    .el-lock-btn,
+    .el-filter-btn {
+      position: absolute;
+      color: #c0c4cc;
+
+      &:hover {
+        color: $--color-primary;
+      }
+    }
+
+    .el-lock-btn {
+      right: 25px;
+      visibility: hidden;
+    }
+
+    .el-filter-btn {
+      right: 5px;
+    }
+
+    &:hover {
+      .el-lock-btn {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.el-table .el-table__cell.is-center > .cell {
+  justify-content: center;
+}
+
+// 表的线风格
+.el-table {
+  // 添加线
+  &.is-right-border-style {
+    td {
+      border-right: $--table-border;
+    }
+  }
+
+  &.is-bottom-border-style {
+    td {
+      border-bottom: $--table-border;
+    }
+  }
+
+  // 去除线
+  &.is-no-right-border-style {
+    th,
+    td {
+      border-right: none;
+    }
+  }
+
+  &.is-no-bottom-border-style {
+    border-top-color: transparent;
+
+    td {
+      border-bottom-color: transparent;
+    }
+  }
+}
+
+// .el-table .caret-wrapper {
+//   left: 2px;
+// }
+
+// .el-table .sort-caret {
+//   transform: scale(0.8);
+// }
+
+// .el-table .sort-caret.ascending {
+//   top: 7px;
+// }
+
+// .el-table th.is-sortable.ascending,
+// .el-table th.is-sortable.descending {
+//   background-color: #E7EDF4;
+// }
+
+// .el-table__body td {
+//   padding: 0;
+//   height: 40px;
+//   border-top-color: transparent;
+//   border-left-color: transparent;
+//   border-right-color: transparent;
+//   border-bottom-color: $--border-color-base;
+//   font-size: 13px;
+//   color: $--color-text-primary;
+// }
+
+// .el-table .el-table__row.current-row {
+//   td:first-child::before {
+//     content: ' ';
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     width: 2px;
+//     background-color: #5383ED;
+//   }
+// }
+
+// .el-table__fixed-right {
+//   td::before {
+//     display: none;
+//   }
+// }
+
+// .el-table__fixed::before,
+// .el-table__fixed-right::before {
+//   display: none;
+// }
+
+// .n-table--border {
+//   border-width: 0;
+// }
+
+// // 右侧边线
+// .n-table--border::after {
+//   display: none;
+// }
+
+// // 底部边线
+// .n-table--border::before {
+//   display: none;
+// }
+
+// 分页
+.p-contianer {
+  position: relative;
+  margin-top: 16px;
+  text-align: right;
+  background-color: white;
+
+  .p-bar {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .el-dropdown {
+    vertical-align: middle;
+
+    // 公共列表下的切换列表风格按钮 宽高一直
+    .dropdown-btn {
+      padding: 8px;
+    }
+  }
+
+  .p-left {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    line-height: 32px !important;
+    color: $--color-text-regular;
+  }
+}
+
+// 头部为白色 不加粗的表风格  人资模块
+// .el-table-header--white {
+//   th {
+//     border-right-width: 0;
+//     background-color: white !important;
+//     .cell {
+//       font-size: 13px;
+//       font-weight: normal;
+//       font-weight: bold;
+//     }
+//     &:hover {
+//       border-right-width: 1px;
+//     }
+//   }
+
+//   .el-table-column--selection .cell {
+//     padding-right: 14px !important;
+//   }
+// }
+
+.el-table-column--selection .cell {
+  padding-left: 12px !important;
+}

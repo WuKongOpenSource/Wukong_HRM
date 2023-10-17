@@ -1,0 +1,20 @@
+// 左右布局右侧样式
+
+.content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  // border-bottom: $--border-base;
+  padding-bottom: #{$--interval-base * 2};
+
+  span {
+    font-size: $--font-size-extra-large;
+  }
+}
+
+.content-body {
+  height: calc(100% - 57px);
+  padding-top: #{$--interval-base * 2};
+  overflow-y: auto;
+}

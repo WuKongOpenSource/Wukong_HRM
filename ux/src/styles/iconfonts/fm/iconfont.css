@@ -1,0 +1,95 @@
+@font-face {
+  font-family: "fm"; /* Project id 3085628 */
+  src: url('iconfont.woff2?t=1640680311249') format('woff2'),
+       url('iconfont.woff?t=1640680311249') format('woff'),
+       url('iconfont.ttf?t=1640680311249') format('truetype');
+}
+
+.fm {
+  font-family: "fm" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wk-icon-multi-account:before {
+  content: "\e732";
+}
+
+.wk-icon-profit:before {
+  content: "\e733";
+}
+
+.wk-icon-check-computation:before {
+  content: "\e734";
+}
+
+.wk-icon-edit:before {
+  content: "\e735";
+}
+
+.wk-icon-search:before {
+  content: "\e736";
+}
+
+.wk-icon-voucher:before {
+  content: "\e737";
+}
+
+.wk-icon-list:before {
+  content: "\e738";
+}
+
+.wk-icon-check-list:before {
+  content: "\e739";
+}
+
+.wk-icon-general-ledger:before {
+  content: "\e73a";
+}
+
+.wk-icon-cash-table:before {
+  content: "\e73b";
+}
+
+.wk-icon-balance-sheet:before {
+  content: "\e73c";
+}
+
+.wk-icon-voucher-table:before {
+  content: "\e73d";
+}
+
+.wk-icon-initial-balance:before {
+  content: "\e740";
+}
+
+.wk-icon-account-table:before {
+  content: "\e741";
+}
+
+.wk-icon-project-table:before {
+  content: "\e742";
+}
+
+.wk-icon-accounts:before {
+  content: "\e743";
+}
+
+.wk-icon-system:before {
+  content: "\e744";
+}
+
+.wk-icon-voucher-word:before {
+  content: "\e745";
+}
+
+.wk-icon-count-table:before {
+  content: "\e746";
+}
+
+.wk-icon-count-all:before {
+  content: "\e747";
+}
+

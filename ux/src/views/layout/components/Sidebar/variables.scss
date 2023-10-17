@@ -1,0 +1,27 @@
+/* stylelint-disable property-no-unknown */
+/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable scss/dollar-variable-pattern */
+// sidebar
+$menuText: $--color-black;
+$menuIcon: $--color-n500;
+$menuActiveText: #fff;
+$subMenuActiveText: #fafbfc; // https://github.com/ElemeFE/element/issues/12951
+
+$menuBg: #fff;
+$menuHover: $--color-n30;
+$subMenuBg: #fff;
+$subMenuHover: $--color-n30;
+$sideBarWidth: 210px;
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  subMenuActiveText: $subMenuActiveText;
+  menuBg: $menuBg;
+  menuHover: $menuHover;
+  subMenuBg: $subMenuBg;
+  subMenuHover: $subMenuHover;
+  sideBarWidth: $sideBarWidth;
+}

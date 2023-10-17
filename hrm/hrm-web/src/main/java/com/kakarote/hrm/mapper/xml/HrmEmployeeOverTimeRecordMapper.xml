@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kakarote.hrm.mapper.HrmEmployeeOverTimeRecordMapper">
+    <select id="queryOverTimeRecordPageList" resultType="java.util.Map">
+        select over_time_type,over_time_start_time,over_time_end_time,over_times
+        from wk_hrm_employee_over_time_record
+        WHERE 1=1
+        <if test="data.employeeId != null">
+            and employee_id=#{data.employeeId}
+        </if>
+        <if test="data.overTimeType != null">
+            and over_time_type=#{data.overTimeType}
+        </if>
+    </select>
+</mapper>

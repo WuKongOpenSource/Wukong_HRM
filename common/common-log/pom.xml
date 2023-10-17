@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.kakarote</groupId>
+        <artifactId>common</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <artifactId>common-log</artifactId>
+    <name>common-log</name>
+    <description>系统操作日志</description>
+    <version>${log.version}</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.kakarote</groupId>
+            <artifactId>common-web</artifactId>
+            <version>${core.version}</version>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+</project>

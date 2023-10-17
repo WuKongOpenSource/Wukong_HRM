@@ -1,0 +1,137 @@
+.fields-index {
+  background-color: $--background-color-base;
+
+  &.body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 24px 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    user-select: none;
+
+    .body-left {
+      flex-shrink: 0;
+      width: 265px;
+      min-width: 265px;
+      max-width: 265px;
+      height: 100%;
+      overflow-y: auto;
+
+      .body-left_title {
+        .wk-icon-fields {
+          margin-right: 10px;
+        }
+
+        margin-bottom: 16px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .lib-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+
+        .lib-item {
+          width: calc(50% - 4px);
+          padding: 5px 10px;
+          margin-bottom: $--interval-base;
+          line-height: 22px;
+          cursor: pointer;
+          background-color: white;
+          border: $--border-base;
+          border-radius: $--border-radius-base;
+
+          .lib-item-icon {
+            display: inline-block;
+            margin-right: $--interval-base;
+            color: $--color-text-primary;
+          }
+
+          &:hover {
+            color: $--color-primary;
+
+            .lib-item-icon {
+              color: $--color-primary;
+            }
+          }
+
+          &:nth-child(even) {
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+
+    .body-content {
+      flex: 1;
+      height: 100%;
+      padding: 0 16px;
+
+      .body-content-warp {
+        width: 900px;
+        height: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        background-color: white;
+        border-radius: $--border-radius-base;
+        box-shadow: 0 2px 12px 0 rgba($color: #000, $alpha: 0.1);
+
+        .el-header {
+          // border-bottom: 1px solid $--border-color-base;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+
+          .title {
+            font-size: 16px;
+            font-weight: 600;
+          }
+        }
+
+        .body-content-main {
+          width: 100%;
+          height: 100%;
+          padding: 10px 16px 30px;
+          overflow-y: auto;
+
+          .el-main {
+            .no-list {
+              margin: 200px 0;
+              color: #ccc;
+
+              @include center;
+            }
+          }
+        }
+      }
+    }
+
+    .body-right {
+      flex-shrink: 0;
+      width: 280px;
+      min-width: 280px;
+      max-width: 280px;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    .field-setting {
+      height: 100%;
+    }
+  }
+
+  .lib-item.sortable-ghost {
+    padding: 16px;
+    margin-bottom: 16px;
+    color: $--color-text-secondary;
+    background-color: $--color-b50;
+    border-radius: $--border-radius-base;
+  }
+
+  .field-row + .sortable-ghost {
+    margin-top: 16px;
+  }
+}

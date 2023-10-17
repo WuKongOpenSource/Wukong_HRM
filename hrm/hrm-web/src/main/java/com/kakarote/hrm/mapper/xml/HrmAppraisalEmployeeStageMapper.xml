@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kakarote.hrm.mapper.HrmAppraisalEmployeeStageMapper">
+    <select id="queryStageList" resultType="com.kakarote.hrm.entity.PO.HrmAppraisalEmployeeStage">
+        select s.*,e.employee_name as stage_user_name from wk_hrm_appraisal_employee_stage s left join wk_hrm_employee e
+        on s.stage_user_id = e.employee_id and s.appraisal_employee_id = #{appraisalEmployeeId}
+    </select>
+    <select id="queryStageInfo" resultType="com.kakarote.hrm.entity.BO.EmployeeAppraisalStageBO">
+        select s.stage_user_id,e.employee_name as stageUserName from wk_hrm_appraisal_employee_stage s left join
+        wk_hrm_employee e on s.stage_user_id = e.employee_id
+        and s.appraisal_employee_id = #{appraisalEmployeeId}
+        and s.stage_type = #{stageType}
+        and s.status = 2
+    </select>
+    <select id="queryStageListByIds" resultType="com.kakarote.hrm.entity.PO.HrmAppraisalEmployeeStage">
+        select s.*,e.employee_name as stage_user_name from wk_hrm_appraisal_employee_stage s
+        left join wk_hrm_employee e on s.stage_user_id = e.employee_id
+        where s.appraisal_stage_id in
+        <foreach collection="ids" index="index" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+    <select id="queryStageByStageType" resultType="com.kakarote.hrm.entity.VO.ScoringStageInfoVO">
+        select s.appraisal_stage_id as stageId,e.employee_name as stageUserName from wk_hrm_appraisal_employee_stage s
+        left join wk_hrm_employee e
+        on e.employee_id = s.stage_user_id
+        where s.appraisal_employee_id = #{appraisalEmployeeId} and s.stage_type in
+        <foreach collection="stageTypes" index="index" item="stageType" open="(" close=")" separator=",">
+            #{stageType}
+        </foreach>
+    </select>
+
+    <select id="queryMaxCountStageData" resultType="com.kakarote.hrm.entity.PO.HrmAppraisalEmployeeStage">
+        SELECT * from wk_hrm_appraisal_employee_stage s
+        inner join (SELECT employee_id,count(1) AS total from wk_hrm_appraisal_employee_stage where appraisal_plan_id =
+        #{appraisalPlanId} GROUP BY employee_id ORDER BY total desc limit 1) tb on s.employee_id = tb.employee_id
+        where s.appraisal_plan_id = #{appraisalPlanId} ORDER BY s.sort ASC
+    </select>
+
+
+    <select id="queryStageByEmployeeIds" resultType="com.kakarote.hrm.entity.PO.HrmAppraisalEmployeeStage">
+        select s.*,e.employee_name as stageUserName from wk_hrm_appraisal_employee_stage s left join wk_hrm_employee e
+        on e.employee_id = s.stage_user_id
+        where s.appraisal_plan_id = #{appraisalPlanId} and s.employee_id in
+        <foreach collection="employeeList" index="index" item="employeeId" open="(" close=")" separator=",">
+            #{employeeId}
+        </foreach>
+    </select>
+
+    <select id="queryStageUserNameBySort" resultType="java.util.Map">
+        select s.stage_user_id,e.employee_name as stageUserName from wk_hrm_appraisal_employee_stage s left join
+        wk_hrm_employee e on e.employee_id = s.stage_user_id
+        where s.appraisal_employee_id = #{appraisalEmployeeId} and s.sort=#{sort}
+    </select>
+
+    <select id="queryAppraisalStageInfoBySort" resultType="com.kakarote.hrm.entity.PO.HrmAppraisalEmployeeStage">
+        select s.*,e.employee_name as stageUserName from wk_hrm_appraisal_employee_stage s left join wk_hrm_employee e
+        on e.employee_id = s.stage_user_id
+        where s.appraisal_plan_id = #{appraisalPlanId} and s.employee_id = #{employeeId} and s.sort=#{sort}
+    </select>
+
+    <select id="queryAppraisalStageInfoByStageType" resultType="com.kakarote.hrm.entity.PO.HrmAppraisalEmployeeStage">
+        select s.*,e.employee_name as stageUserName from wk_hrm_appraisal_employee_stage s left join wk_hrm_employee e
+        on e.employee_id = s.stage_user_id
+        where s.appraisal_plan_id = #{appraisalPlanId} and s.employee_id = #{employeeId} and s.stage_type=#{stageType}
+    </select>
+
+    <select id="queryEmployeePendingStageNumOfAll" resultType="java.util.Map">
+        select
+        (select count(1) from wk_hrm_appraisal_employee_stage s where s.stage_type = 1 and s.stage_user_id =
+        #{employeeId} and status = 2) as fillNum,
+        (select count(1) from wk_hrm_appraisal_employee_stage s where s.stage_type=2 and s.stage_user_id = #{employeeId}
+        and status = 2) as targetConfirmationNum,
+        (select count(1) from wk_hrm_appraisal_employee_stage s where (s.stage_type=3 or s.stage_type=4) and
+        s.stage_user_id = #{employeeId} and status = 2) as scoreNum,
+        (select count(1) from wk_hrm_appraisal_employee_stage s where s.stage_type=5 and s.stage_user_id = #{employeeId}
+        and status = 2) as resultAuditNum,
+        (select count(1) from wk_hrm_appraisal_employee_stage s where s.stage_type=6 and s.stage_user_id = #{employeeId}
+        and status = 2) as resultConfirmationNum,
+        (select count(1) from wk_hrm_appraisal_employee_stage s where s.stage_type=7 and s.stage_user_id = #{employeeId}
+        and status = 2) as appealConfirmationNum
+        from wk_hrm_appraisal_employee_stage limit 1
+    </select>
+</mapper>

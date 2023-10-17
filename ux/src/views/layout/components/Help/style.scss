@@ -1,0 +1,32 @@
+.main {
+  height: 100%;
+  padding-right: 32px;
+  overflow-y: auto;
+
+  &-title {
+    font-size: 32px;
+  }
+
+  &-des {
+    display: flex;
+    margin-top: 24px;
+    font-size: 16px;
+    line-height: 1.5;
+
+    > .icon {
+      flex-shrink: 0;
+    }
+
+    > .content {
+      flex: 1;
+    }
+
+    .icon + .content {
+      margin-left: 8px;
+    }
+  }
+
+  &-body {
+    margin-top: 24px;
+  }
+}

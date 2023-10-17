@@ -1,0 +1,38 @@
+.org-tree-company {
+  font-size: 12px;
+  font-weight: 600;
+  color: $--color-text-regular;
+  background-color: #eceef2;
+  box-shadow: none !important;
+}
+
+.org-tree-department {
+  padding: 8px 15px !important;
+  font-size: 12px;
+  font-weight: 600;
+  color: $--color-text-regular;
+  border: 2px solid $--color-text-regular;
+  box-shadow: none !important;
+}
+
+.org-tree-default {
+  font-size: 12px;
+  font-weight: 600;
+  color: $--color-black;
+  background-color: $--color-n20;
+  box-shadow: none !important;
+}
+
+.org-tree-node-label {
+  cursor: pointer;
+}
+
+.org-tree-node:not(:last-child)::after,
+.org-tree-node:not(:first-child)::before {
+  border-top: 2px solid $--color-text-regular;
+}
+
+.org-tree-node::after,
+.org-tree-node-children::before {
+  border-left: 2px solid $--color-text-regular;
+}

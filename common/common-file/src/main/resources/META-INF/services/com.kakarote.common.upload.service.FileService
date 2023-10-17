@@ -1,0 +1,6 @@
+com.kakarote.common.upload.service.impl.FtpFileServiceImpl
+com.kakarote.common.upload.service.impl.LocalFileServiceImpl
+com.kakarote.common.upload.service.impl.OssFileServiceImpl
+com.kakarote.common.upload.service.impl.QncFileServiceImpl
+com.kakarote.common.upload.service.impl.TencentFileServiceImpl
+com.kakarote.common.upload.service.impl.AwsFileServiceImpl

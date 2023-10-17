@@ -1,0 +1,149 @@
+{
+  "id": "3085628",
+  "name": "future-fm",
+  "font_family": "fm",
+  "css_prefix_text": "wk-icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "26841071",
+      "name": "多栏账",
+      "font_class": "multi-account",
+      "unicode": "e732",
+      "unicode_decimal": 59186
+    },
+    {
+      "icon_id": "26841072",
+      "name": "利润表",
+      "font_class": "profit",
+      "unicode": "e733",
+      "unicode_decimal": 59187
+    },
+    {
+      "icon_id": "26841073",
+      "name": "辅助核算",
+      "font_class": "check-computation",
+      "unicode": "e734",
+      "unicode_decimal": 59188
+    },
+    {
+      "icon_id": "26841074",
+      "name": "录凭证",
+      "font_class": "edit",
+      "unicode": "e735",
+      "unicode_decimal": 59189
+    },
+    {
+      "icon_id": "26841075",
+      "name": "查凭证",
+      "font_class": "search",
+      "unicode": "e736",
+      "unicode_decimal": 59190
+    },
+    {
+      "icon_id": "26841076",
+      "name": "凭证",
+      "font_class": "voucher",
+      "unicode": "e737",
+      "unicode_decimal": 59191
+    },
+    {
+      "icon_id": "26841077",
+      "name": "明细表",
+      "font_class": "list",
+      "unicode": "e738",
+      "unicode_decimal": 59192
+    },
+    {
+      "icon_id": "26841078",
+      "name": "核算项目明细表",
+      "font_class": "check-list",
+      "unicode": "e739",
+      "unicode_decimal": 59193
+    },
+    {
+      "icon_id": "26841079",
+      "name": "总账",
+      "font_class": "general-ledger",
+      "unicode": "e73a",
+      "unicode_decimal": 59194
+    },
+    {
+      "icon_id": "26841080",
+      "name": "现金流量表",
+      "font_class": "cash-table",
+      "unicode": "e73b",
+      "unicode_decimal": 59195
+    },
+    {
+      "icon_id": "26841081",
+      "name": "资产负债表",
+      "font_class": "balance-sheet",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
+      "icon_id": "26841082",
+      "name": "凭证汇总表",
+      "font_class": "voucher-table",
+      "unicode": "e73d",
+      "unicode_decimal": 59197
+    },
+    {
+      "icon_id": "26841085",
+      "name": "财务初始余额",
+      "font_class": "initial-balance",
+      "unicode": "e740",
+      "unicode_decimal": 59200
+    },
+    {
+      "icon_id": "26841086",
+      "name": "科目余额表",
+      "font_class": "account-table",
+      "unicode": "e741",
+      "unicode_decimal": 59201
+    },
+    {
+      "icon_id": "26841087",
+      "name": "核算项目余额表",
+      "font_class": "project-table",
+      "unicode": "e742",
+      "unicode_decimal": 59202
+    },
+    {
+      "icon_id": "26841088",
+      "name": "账薄",
+      "font_class": "accounts",
+      "unicode": "e743",
+      "unicode_decimal": 59203
+    },
+    {
+      "icon_id": "26841089",
+      "name": "系统参数",
+      "font_class": "system",
+      "unicode": "e744",
+      "unicode_decimal": 59204
+    },
+    {
+      "icon_id": "26841090",
+      "name": "凭证字",
+      "font_class": "voucher-word",
+      "unicode": "e745",
+      "unicode_decimal": 59205
+    },
+    {
+      "icon_id": "26841593",
+      "name": "数量金额明细表",
+      "font_class": "count-table",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "26841594",
+      "name": "数量金额总账",
+      "font_class": "count-all",
+      "unicode": "e747",
+      "unicode_decimal": 59207
+    }
+  ]
+}

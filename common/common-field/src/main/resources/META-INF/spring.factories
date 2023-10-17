@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.kakarote.common.field.config.FieldAutoConfiguration

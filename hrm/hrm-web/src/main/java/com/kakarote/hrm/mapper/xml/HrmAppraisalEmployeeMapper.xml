@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kakarote.hrm.mapper.HrmAppraisalEmployeeMapper">
+    <select id="queryBaseInfo" resultType="com.kakarote.hrm.entity.VO.EmployeeAppraisalPlanVO">
+        select
+        ea.*,e.employee_name,ap.appraisal_plan_name,ap.appraisal_cycle_type,ap.appraisal_cycle,e.employment_forms,d.name
+        as dept_name,ap.appraisal_cycle,ap.quarter from wk_hrm_appraisal_employee ea
+        left join wk_hrm_appraisal_plan ap on ea.appraisal_plan_id = ap.appraisal_plan_id
+        left join wk_hrm_employee e on ea.employee_id = e.employee_id
+        left join wk_hrm_dept d on d.dept_id = e.dept_id
+        where ea.appraisal_employee_id = #{employeeAppraisalId}
+    </select>
+    <select id="queryAppraisalList" resultType="com.kakarote.hrm.entity.VO.EmployeeAppraisalPlanVO">
+        select ea.*,e.employee_name,ap.appraisal_plan_name,ap.appraisal_cycle_type,ap.appraisal_cycle,ap.quarter from
+        wk_hrm_appraisal_employee ea
+        left join wk_hrm_appraisal_plan ap on ea.appraisal_plan_id = ap.appraisal_plan_id
+        left join wk_hrm_employee e on ea.employee_id = e.employee_id where 1=1
+        <if test="data.status != null">
+            and ea.status = #{data.status}
+        </if>
+        <if test="data.employeeId != null">
+            and ea.employee_id = #{data.employeeId}
+        </if>
+        <if test="data.employeeName != null and data.employeeName != ''">
+            and e.employee_name = #{data.employeeName}
+        </if>
+        <if test="data.appraisalPlanId != null">
+            and ea.appraisal_plan_id = #{data.appraisalPlanId}
+        </if>
+        <if test="data.level != null and data.level != ''">
+            and ea.level = #{data.level}
+        </if>
+        <if test="data.appraisalPlanName != null and data.appraisalPlanName != ''">
+            and ap.appraisal_plan_name like concat('%',#{data.appraisalPlanName},'%')
+        </if>
+        order by ea.create_time desc
+    </select>
+
+    <select id="queryStageAppraisalList" resultType="com.kakarote.hrm.entity.VO.EmployeeAppraisalPlanVO">
+        select
+        ea.*,es.stage_type,e.employee_name,ap.appraisal_plan_name,ap.appraisal_cycle_type,ap.appraisal_cycle,ap.quarter
+        from wk_hrm_appraisal_employee_stage es
+        left join wk_hrm_employee e on es.employee_id = e.employee_id
+        left join wk_hrm_appraisal_employee ea on es.appraisal_employee_id = ea.appraisal_employee_id
+        left join wk_hrm_appraisal_plan ap on es.appraisal_plan_id = ap.appraisal_plan_id
+        where es.status = #{data.status} and es.stage_user_id = #{data.employeeId}
+        and es.stage_type in
+        <foreach collection="data.finalStage" index="index" item="stage" open="(" close=")" separator=",">
+            #{stage}
+        </foreach>
+        order by ea.create_time desc
+    </select>
+
+    <select id="queryStageEmployeeNum" resultType="java.util.Map">
+        select
+        (select count(1) from wk_hrm_appraisal_employee s where s.appraisal_plan_id = a.appraisal_plan_id and
+        s.stage_status=0) as noStart,
+        (select count(1) from wk_hrm_appraisal_employee s where s.appraisal_plan_id = a.appraisal_plan_id and
+        s.stage_status=1) as fill,
+        (select count(1) from wk_hrm_appraisal_employee s where s.appraisal_plan_id = a.appraisal_plan_id and
+        s.stage_status=2) as targetConfirmation,
+        (select count(1) from wk_hrm_appraisal_employee s where s.appraisal_plan_id = a.appraisal_plan_id and
+        s.stage_status=3) as selfScore,
+        (select count(1) from wk_hrm_appraisal_employee s where s.appraisal_plan_id = a.appraisal_plan_id and
+        s.stage_status=4) as otherScore,
+        (select count(1) from wk_hrm_appraisal_employee s where s.appraisal_plan_id = a.appraisal_plan_id and
+        s.stage_status=5) as resultAudit,
+        (select count(1) from wk_hrm_appraisal_employee s where s.appraisal_plan_id = a.appraisal_plan_id and
+        (s.stage_status=6 or s.stage_status=7)) as resultConfirmation,
+        (select count(1) from wk_hrm_appraisal_employee s where s.appraisal_plan_id = a.appraisal_plan_id and
+        s.stage_status=8) as placeOnFile,
+        (select count(1) from wk_hrm_appraisal_employee s where s.appraisal_plan_id = a.appraisal_plan_id and
+        s.stage_status=9) as executing,
+        (select count(1) from wk_hrm_appraisal_employee s where s.appraisal_plan_id = a.appraisal_plan_id and
+        s.stage_status=10) as endNum
+        from wk_hrm_appraisal_plan a
+        where a.appraisal_plan_id = #{appraisalPlanId}
+    </select>
+
+    <select id="queryEmployeeListByPlanId" resultType="com.kakarote.hrm.entity.PO.HrmAppraisalEmployee">
+        select appraisal_employee_id,employee_id from wk_hrm_appraisal_employee where appraisal_plan_id =
+        #{appraisalPlanId} group by employee_id;
+    </select>
+
+    <select id="queryRecentlyAppraisalEmployee" resultType="com.kakarote.hrm.entity.PO.HrmAppraisalEmployee">
+        select * from wk_hrm_appraisal_employee where employee_id = #{employeeId} order by create_time desc limit 1,1;
+    </select>
+</mapper>

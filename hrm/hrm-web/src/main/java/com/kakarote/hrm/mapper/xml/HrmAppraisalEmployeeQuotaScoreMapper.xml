@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kakarote.hrm.mapper.HrmAppraisalEmployeeQuotaScoreMapper">
+    <select id="queryQuotaScoreList" resultType="com.kakarote.hrm.entity.PO.HrmAppraisalEmployeeQuotaScore">
+        select qs.*,e.employee_name as raterName from wk_hrm_appraisal_employee_quota_score qs
+        left join wk_hrm_employee e on e.employee_id = qs.rater
+        where qs.appraisal_employee_id = #{appraisalEmployeeId}
+    </select>
+</mapper>
