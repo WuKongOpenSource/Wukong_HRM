@@ -23,7 +23,7 @@ QQ群交流群群：[259359511](https://qm.qq.com/cgi-bin/qm/qr?k=G9T2audQqbZBR_
 
 扫码加入微信群，在线客服解答疑问
 
-<img src="https://gitee.com/wukongcrm/project/raw/master/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230505171952.jpg" width="120">
+<img src="https://raw.githubusercontent.com/WuKongOpenSource/WukongHRM/main/img/cc1.png" width="120">
 
 
 :boom:  :boom:  :boom: 注：悟空人力资源管理系统采用全新的前后端分离模式，本仓库代码中已集成前端vue打包后文件，  **可免去打包操作，无需运行前端**
