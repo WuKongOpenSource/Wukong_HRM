@@ -72,12 +72,26 @@ wk_open_hrm
 
 # 使用说明
 
-### 一、前置环境
+### 一、本项目安装需要在Linux环境下进行，可在虚拟机中安装Linux环境
+
+Linux 环境配置要求如下：
+
+推荐使用系统：centos 
+系统内存：≥8G
+系统CPU：≥4核
+磁盘大小：≥100G
+
+***如何下载及安装Linux环境：下载教程。
+
+
+### 二、前置环境，需要在Linux环境下安装以下配置
+
 - Jdk1.8
 - Maven3.5^
 - Mysql8^
 - Redis(版本不限)
 - elasticsearch8.5.3
+
 
 ### 安装说明
 
@@ -92,7 +106,8 @@ yum -y install java-1.8.0-openjdk-devel;
 ```
 yum -y install epel-release;
 yum -y install redis;
-chkconfig redis on;
+systemctl start redis
+
 #-- 修改redis密码为123456
 yum -y install vim;
 vim /etc/redis.conf;
@@ -101,7 +116,8 @@ requirepass 123456
 #-- 或者输入 / 搜索 # requirepass foobared
 #-- 将前面的#删除，将foobared改为123456
 #-- 修改完成之后 :wq 保存并退出,重启redis
-service redis restart;
+systemctl restart redis
+
 ```
 
 ###### 3.安装mysql
@@ -133,27 +149,14 @@ service mysqld restart;
 ```
 ### 4.安装elasticsearch(es)
 ```
---下载es
+--下载es  
+# 注意不要放在root目录下
+useradd elasticsearch
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.5.3-linux-x86_64.tar.gz
 tar xvf elasticsearch-8.5.3-linux-x86_64.tar.gz
-chown -R elasticsearch:elasticsearch elasticsearch-8.5.3-linux-x86_64 
-chmod -R 777 elasticsearch-8.5.3-linux-x86_64
+chown -R elasticsearch:elasticsearch  elasticsearch-8.5.3 
+chmod -R 777  elasticsearch-8.5.3
 
---修改es配置文件
-ingest.geoip.downloader.enabled: false  ## 添加配置
-xpack.security.enabled: true
-xpack.security.enrollment.enabled: true
-
-xpack.security.http.ssl:
-  enabled: false        # 改为false
-  keystore.path: certs/http.p12
-
---Enable encryption and mutual authentication between cluster nodes
-xpack.security.transport.ssl:
-  enabled: false         # 改为false
-  verification_mode: certificate
-  keystore.path: certs/transport.p12
-  truststore.path: certs/transport.p12
 
 -- 安装es分词器
 ./elasticsearch-plugin install analysis-icu
@@ -166,7 +169,7 @@ su elasticsearch
 
 ```
 #### 二、项目配置与启动
-
+yum -y install maven
 ###### 1.导入DB目录下数据库
 ###### 2.在项目根目录执行mvn install
 ###### 2.修改配置信息
