@@ -8,8 +8,6 @@
 
 官网地址：[http://www.5kcrm.com](http://www.5kcrm.com/)
 
-QQ群交流群群：[259359511](https://qm.qq.com/cgi-bin/qm/qr?k=G9T2audQqbZBR_HG0aTP9E-8fE7oMeb8&jump_from=webapi)
-
 扫码添加小悟官方客服微信，邀您加入千人微信交流群：
 
 <img src="https://images.gitee.com/uploads/images/2019/1231/115927_f9c580c8_345098.png" width="120">
@@ -158,6 +156,8 @@ chmod -R 777  elasticsearch-8.5.3
 
 --修改es配置文件:elasticsearch.yml
 
+# 安装es如有以下配置信息，需要修改配置信息
+
 ingest.geoip.downloader.enabled: false  ## 添加配置
 xpack.security.enabled: true
 xpack.security.enrollment.enabled: true
@@ -192,14 +192,14 @@ yum -y install maven
 ```
 create database wk_hrm_open character set utf8mb4 collate utf8mb4_general_ci;
  use wk_hrm_open;
-source XXX
+source XXX（项目路径）
 ```
 
 ###### 2.在项目根目录执行mvn install
 
-###### 2.修改配置信息
+###### 3.在项目中修改以下配置信息：
 
-###### 3.在hrm模块下resource目录配置数据库帐号信息以及redis帐号信息`
+###### 3.在hrm模块下resource目录配置数据库帐号密码信息以及redis帐号信息`
 
 ###### 4. 访问[悟空ID](https://id.72crm.com/)获取账号
 
