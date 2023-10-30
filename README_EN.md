@@ -1,4 +1,6 @@
-# wk_open_hrm
+# Wukong_HRM
+
+### 🌐Read This in [Chinese](README.md)
 
 Experience address: [https://www.72crm.com](http://www.72crm.com)
 
